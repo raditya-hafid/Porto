@@ -1,0 +1,375 @@
+:root {
+    --bg-color: #f8f9fa; /* Material Light Background */
+    --box-bg: #ffffff;   /* Pure white cards */
+    --box-border: #dadce0; /* Subtle grey Google border */
+    --text-color: #202124; /* Google Text */
+    --accent: #4285F4; /* Google Blue */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.layout-wrapper {
+    width: 100%;
+    max-width: 96%; /* Diperlebar menjadi 96% dari layar untuk meminimalisir space kosong */
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+}
+
+/* Nav Pills (Sesuai elemen abu-abu di atas & bawah wireframe) */
+.nav-lines {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.nav-pill {
+    width: 80px;
+    height: 12px;
+    background-color: #e8eaed;
+    border-radius: 8px;
+}
+
+/* Bento Container */
+.bento {
+    display: flex;
+    gap: 1rem;
+    flex: 1; 
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    min-height: 0; 
+}
+
+/* Kolom dan Baris Dasar */
+.col, .row {
+    display: flex;
+    gap: 1rem;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.col {
+    flex-direction: column;
+    min-width: 0;
+}
+
+.row {
+    flex-direction: row;
+    min-height: 0;
+}
+
+/* Proporsi Lebar dan Tinggi sesuai gambar wireframe */
+.col-left { flex: 1.4; }
+.col-right { flex: 1; }
+
+.r-top { flex: 1; }
+.project { flex: 1.8; }
+
+.foto { flex: 1; }
+.about { flex: 1.8; }
+
+.pengalaman { flex: 1; }
+.r-mid { flex: 1; }
+.sertifikasi { flex: 1.1; }
+
+.skill { flex: 1; }
+.education { flex: 1; }
+
+/* Gaya Default Kotak (Material Google Style) */
+.box {
+    background-color: var(--box-bg);
+    border-radius: 24px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.1), 0 1px 3px 1px rgba(60,64,67,0.15);
+}
+
+/* Gradient Border like Google One */
+.box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 4px; /* Ketebalan border */
+    background: conic-gradient(from 0deg, #34A853, #4285F4, #EA4335, #FBBC05, #34A853);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 1; /* Supaya border selalu di atas elemen anak */
+}
+
+.box:hover {
+    box-shadow: 0 1px 3px 0 rgba(60,64,67,0.15), 0 4px 8px 3px rgba(60,64,67,0.15);
+    transform: translateY(-2px);
+}
+
+/* Kondisi Kotak saat Aktif (Diklik dan Melebar) */
+.box.is-active {
+    cursor: default;
+    background-color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 4px 6px 0 rgba(60,64,67,0.15), 0 8px 24px 8px rgba(60,64,67,0.15);
+    z-index: 10;
+}
+
+/* Styling Khusus untuk Kotak Project (Warna sedikit berbeda dari desain) */
+.project {
+    background-color: #e8f0fe; /* Google soft blue */
+    border: none;
+}
+
+.inner-projects-preview {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+}
+
+.inner-project {
+    flex: 1;
+    background-color: var(--accent);
+    color: white;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* Manajemen Konten di dalam Kotak */
+.content-summary {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.snippet {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #4b5563;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.content-full {
+    opacity: 0;
+    visibility: hidden;
+    padding: 2.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    transition: all 0.4s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(20px);
+}
+
+.content-full.always-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    justify-content: flex-start;
+}
+
+.truncate-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Memotong teks dan memberi elipsis (...) di baris ke-3 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.4s ease;
+}
+
+.box.is-active .truncate-text {
+    -webkit-line-clamp: 20; /* Menghilangkan potongan teks ketika aktif */
+}
+
+.box.is-active .content-summary {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.box.is-active .content-full {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.content-full h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.content-full p {
+    font-size: 1.2rem;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* =======================================================
+   Animasi "Melebarkan dan Yang Lainnya Mengecil"
+   ======================================================= */
+
+.bento.has-active .col {
+    flex: 1; /* Kolom yang tidak aktif akan mengecil */
+}
+.bento.has-active .col.has-active {
+    flex: 4; /* Kolom yang aktif akan membesar secara signifikan */
+}
+
+.col.has-active > .row, 
+.col.has-active > .box {
+    flex: 1; /* Baris/kotak yang tidak aktif di kolom aktif mengecil */
+}
+.col.has-active > .row.has-active, 
+.col.has-active > .box.is-active {
+    flex: 4; /* Baris/kotak yang aktif melebar */
+}
+
+.row.has-active > .box {
+    flex: 1; /* Kotak di baris aktif mengecil jika tidak diklik */
+}
+.row.has-active > .box.is-active {
+    flex: 5; /* Kotak yang diklik mendominasi ruang di baris tersebut */
+}
+
+/* Menyamarkan teks pada kotak yang mengecil agar terlihat rapi */
+.bento.has-active .box:not(.is-active) .content-summary {
+    opacity: 0.8;
+    transform: scale(0.65); /* Mengecilkan teks agar tetap pas dan terlihat di kotak yang menyusut */
+}
+
+/* =======================================================
+   Custom Style Khusus Kotak Foto (Opsi C: Quick Facts)
+   ======================================================= */
+.foto-badge {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(8px);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #22c55e;
+}
+
+.trivia-overlay {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    transform: translateY(20px); /* Turun sedikit di awal */
+    background: rgba(15, 23, 42, 0.4); /* Lebih transparan */
+    backdrop-filter: blur(16px); /* Blur dinaikkan agar background foto tetap terlihat estetik */
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 16px;
+    color: white;
+    width: calc(100% - 4rem);
+    max-width: 400px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.box.is-active .foto-badge {
+    opacity: 0;
+}
+
+.box.is-active .trivia-overlay {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Naik ke posisi normal saat diklik */
+}
+
+.trivia-overlay h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #38bdf8;
+    text-align: center;
+}
+
+.trivia-list {
+    list-style: none;
+}
+
+.trivia-list li {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.8rem;
+    color: #e2e8f0;
+}
+
+.trivia-list li strong {
+    color: white;
+}
+
+.trivia-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
