@@ -105,14 +105,20 @@ body {
     box-shadow: 0 1px 2px 0 rgba(60,64,67,0.1), 0 1px 3px 1px rgba(60,64,67,0.15);
 }
 
-/* Gradient Border like Google One */
+/* Solid 4 Colors Border like Google */
 .box::before {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
     padding: 4px; /* Ketebalan border */
-    background: conic-gradient(from 0deg, #34A853, #4285F4, #EA4335, #FBBC05, #34A853);
+    /* Perpindahan warna tajam (solid) tanpa gradien */
+    background: conic-gradient(from -45deg, 
+        #4285F4 0deg 90deg,   /* Biru (Atas) */
+        #EA4335 90deg 180deg, /* Merah (Kanan) */
+        #FBBC05 180deg 270deg,/* Kuning (Bawah) */
+        #34A853 270deg 360deg /* Hijau (Kiri) */
+    );
     -webkit-mask: 
         linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);
