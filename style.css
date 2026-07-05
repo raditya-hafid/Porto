@@ -27,7 +27,7 @@ body {
 .layout-wrapper {
     width: 100%;
     max-width: 96%; /* Diperlebar menjadi 96% dari layar untuk meminimalisir space kosong */
-    height: 95vh;
+    height: 85vh; /* Diturunkan dari 95vh agar grid keseluruhan tidak terlalu melar ke bawah */
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -78,8 +78,8 @@ body {
 .col-left { flex: 1.4; }
 .col-right { flex: 1; }
 
-.r-top { flex: 1; }
-.project { flex: 1.8; }
+.r-top { flex: 1.1; } /* Diseimbangkan agar tidak terlalu pendek */
+.project { flex: 1.3; } /* Dikurangi secara signifikan agar kotak project tidak mendominasi/terlalu besar */
 
 .foto { flex: 1; }
 .about { flex: 1.8; }
@@ -266,8 +266,11 @@ body {
 .bento.has-active .col {
     flex: 1; /* Kolom yang tidak aktif akan mengecil */
 }
-.bento.has-active .col.has-active {
-    flex: 4; /* Kolom yang aktif akan membesar secara signifikan */
+.bento.has-active .col-left.has-active {
+    flex: 3.5; /* Kolom kiri (project/about) membesar cukup lebar karena teks banyak */
+}
+.bento.has-active .col-right.has-active {
+    flex: 2.2; /* Kolom kanan jangan buka terlalu lebar agar tidak banyak space kosong horizontal */
 }
 
 .col.has-active > .row, 
@@ -378,4 +381,50 @@ body {
     border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
+}
+
+/* =======================================================
+   Animasi Carousel Marquee untuk Kotak Skill
+   ======================================================= */
+@keyframes scroll-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.skills-marquee-container {
+    position: absolute;
+    bottom: 2.5rem; /* Sejajar dengan padding bawah */
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    /* Memberikan efek gradient fade di ujung kiri-kanan */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.box.is-active .skills-marquee-container {
+    opacity: 1;
+    visibility: visible;
+}
+
+.skills-marquee {
+    display: flex;
+    width: max-content;
+    animation: scroll-marquee 15s linear infinite;
+}
+
+.marquee-group {
+    display: flex;
+    gap: 2.5rem;
+    padding-right: 2.5rem; /* Agar ada jarak antara grup 1 dan grup 2 */
+}
+
+.skill-icon {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
