@@ -549,3 +549,62 @@ body.dark-mode .box.is-active .content-full::-webkit-scrollbar-thumb {
     object-fit: contain;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
+
+/* =======================================================
+   Responsive / Mobile Styles
+   ======================================================= */
+/* Tablet Besar & iPad (Memperbaiki Footer & Scroll) */
+@media (max-width: 1100px) {
+    body {
+        height: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex-direction: column; /* Memperbaiki posisi footer agar tidak di samping */
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 2rem;
+    }
+    .layout-wrapper {
+        height: auto;
+        min-height: auto;
+    }
+    .bento {
+        height: auto;
+    }
+    .box {
+        min-height: 280px; /* Mencegah kotak terlalu gepeng */
+    }
+    footer {
+        position: relative !important;
+        margin-top: 2rem !important;
+        padding-bottom: 2rem !important;
+        bottom: 0 !important;
+    }
+}
+
+/* Tablet Portrait (Membagi layout utama atas-bawah, tapi baris tetap sejajar) */
+@media (max-width: 900px) {
+    .bento {
+        flex-direction: column;
+    }
+    .col {
+        width: 100%;
+        flex: none;
+    }
+}
+
+/* Smartphone (Semuanya menjadi satu kolom penuh) */
+@media (max-width: 600px) {
+    .r-top, .r-mid {
+        flex-direction: column;
+    }
+    .nav-lines {
+        gap: 0.8rem;
+    }
+    .content-full h2 {
+        font-size: 1.8rem !important;
+    }
+    .box {
+        min-height: 250px;
+    }
+}
