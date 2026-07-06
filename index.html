@@ -10,12 +10,12 @@
 <body>
     <div class="layout-wrapper">
         
-        <!-- Header Nav Lines -->
+        <!-- Header Nav Actions -->
         <div class="nav-lines top-nav">
-            <div class="nav-pill"></div>
-            <div class="nav-pill"></div>
-            <div class="nav-pill"></div>
-            <div class="nav-pill"></div>
+            <a href="mailto:radityahafid@example.com" class="nav-btn" data-i18n="nav-contact">✉️ Contact</a>
+            <button class="nav-btn" id="lang-toggle">🌐 ID/EN</button>
+            <button class="nav-btn" id="theme-toggle">🌙 Dark Mode</button>
+            <a href="CV_Raditya_Hafid_Daniswara.pdf" target="_blank" class="nav-btn" data-i18n="nav-cv">📄 Download CV</a>
         </div>
             
         <!-- Main Bento Grid Area -->
@@ -25,7 +25,7 @@
             <div class="col col-left">
                 <div class="row r-top">
                     <!-- Photo Box -->
-                    <div class="box foto" style="background-image: url('https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=800&auto=format&fit=crop'); background-size: cover; background-position: center; border: none;">
+                    <div class="box foto" style="background-image: url('foto/Raditya.jpeg'); background-size: cover; background-position: center; border: none;">
                         <!-- Badge -->
                         <div class="foto-badge">
                             <span class="status-dot"></span> Raditya
@@ -33,12 +33,11 @@
                         
                         <!-- Quick Facts Overlay -->
                         <div class="trivia-overlay">
-                            <h3>Quick Facts ⚡</h3>
                             <ul class="trivia-list">
-                                <li><strong>📍 Location:</strong> Surakarta, Indonesia</li>
-                                <li><strong>🎓 Education:</strong> Informatics Engineering</li>
-                                <li><strong>💻 Focus:</strong> Backend & API Design</li>
-                                <li><strong>🛠️ Stack:</strong> Laravel, React, MySQL</li>
+                                <li data-i18n="loc"><strong>📍 Location:</strong> Surakarta, Indonesia</li>
+                                <li data-i18n="edu"><strong>🎓 Education:</strong> Informatics Engineering</li>
+                                <li data-i18n="focus"><strong>💻 Focus:</strong> Backend & API Design</li>
+                                <li data-i18n="stack"><strong>🛠️ Stack:</strong> Laravel, React, MySQL</li>
                             </ul>
                         </div>
                     </div>
@@ -46,18 +45,18 @@
                     <!-- About Box -->
                     <div class="box about">
                         <div class="content-full always-visible">
-                            <h2 style="font-size: 2.2rem;">Hi, I'm Raditya! 👋</h2>
+                            <h2 style="font-size: 2.2rem;" data-i18n="hi">Hi, I'm Raditya! 👋</h2>
                             <div class="truncate-text">
-                                <p style="margin-bottom: 0.8rem;">I am a <strong>Backend & Software Engineer</strong> passionate about designing system architectures, relational databases (SQL), and RESTful APIs.</p>
-                                <p style="margin-bottom: 0.8rem;">Currently studying at <em>Universitas Sebelas Maret (UNS)</em>. I have practical experience in building modular applications using OOP & MVC patterns (Laravel), and I am familiar with server administration (cPanel) and containerization (Docker).</p>
-                                <p style="font-size: 0.95rem; color: #555;">Beyond backend development, I am actively expanding my knowledge in <strong>Quality Assurance (QA)</strong> and automated testing to ensure robust software delivery.</p>
+                                <p style="margin-bottom: 0.8rem;" data-i18n="about-1">I am a <strong>Backend & Software Engineer</strong> passionate about designing system architectures, relational databases (SQL), and RESTful APIs.</p>
+                                <p style="margin-bottom: 0.8rem;" data-i18n="about-2">Currently studying at <em>Universitas Sebelas Maret (UNS)</em>. I have practical experience in building modular applications using OOP & MVC patterns (Laravel), and I am familiar with server administration (cPanel) and containerization (Docker).</p>
+                                <p style="font-size: 0.95rem; color: #555;" data-i18n="about-3">Beyond backend development, I am actively expanding my knowledge in <strong>Quality Assurance (QA)</strong> and automated testing to ensure robust software delivery.</p>
                             </div>
                         </div>
 
                         <!-- Footer Area (Available Status) - Menggunakan absolute positioning agar tetap di pojok kanan bawah -->
                         <div class="about-footer" style="position: absolute; bottom: 1.5rem; right: 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; font-weight: 600; color: #16a34a; background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 0.5rem 1rem; border-radius: 99px; z-index: 10; box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.1);">
                             <span style="display: inline-block; width: 10px; height: 10px; background-color: #16a34a; border-radius: 50%; box-shadow: 0 0 8px #16a34a;"></span>
-                            Available for Internship Role
+                            <span data-i18n="avail">Available for Internship Role</span>
                         </div>
                     </div>
                 </div>
@@ -66,22 +65,26 @@
                 <div class="box project">
                     <div class="content-summary">
                         <div class="inner-projects-preview">
-                            <div class="inner-project">Waste Bank</div>
-                            <div class="inner-project">Geprek GT</div>
+                            <div class="inner-project" style="background-image: url('Project/ABS.png');">
+                                <div class="project-title-overlay">Waste Bank System</div>
+                            </div>
+                            <div class="inner-project" style="background-image: url('Project/Geprek.png');">
+                                <div class="project-title-overlay">Geprek GT Platform</div>
+                            </div>
                         </div>
                     </div>
                     <div class="content-full">
-                        <h2>Featured Projects 🚀</h2>
+                        <h2 data-i18n="feat">Featured Projects 🚀</h2>
                         <div style="margin-top: 1rem; margin-bottom: 1.5rem;">
                             <h3 style="font-size: 1.2rem; margin-bottom: 0.3rem;">♻️ Waste Bank System (PT. Biptek)</h3>
-                            <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">An integrated waste management information system (Web & Mobile). Engineered with Laravel, applying strict OOP principles, MySQL database normalization, and API testing via Postman.</p>
-                            <p style="font-size: 0.8rem; font-style: italic; color: #555;">Live Note: Successfully deployed to a production server using cPanel, including live database migration.</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 0.5rem;" data-i18n="abs-desc">An integrated waste management information system (Web & Mobile). Engineered with Laravel, applying strict OOP principles, MySQL database normalization, and API testing via Postman.</p>
+                            <p style="font-size: 0.8rem; font-style: italic; color: #555;" data-i18n="abs-note">Live Note: Successfully deployed to a production server using cPanel, including live database migration.</p>
                             <a href="https://github.com/amandanmira/PBL-BankSampah" target="_blank" style="font-size: 0.9rem; color: #2563eb; text-decoration: none; font-weight: 500;">🔗 GitHub Repository</a>
                         </div>
                         <div>
                             <h3 style="font-size: 1.2rem; margin-bottom: 0.3rem;">🍗 Geprek GT Platform</h3>
-                            <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">An e-commerce platform and digital catalog built using MVC architecture to ensure scalable order processing and smooth user experience.</p>
-                            <p style="font-size: 0.8rem; font-style: italic; color: #555;">Live Note: Deployed on a free-tier hosting service. The initial server response may experience slight delays.</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 0.5rem;" data-i18n="geprek-desc">An e-commerce platform and digital catalog built using MVC architecture to ensure scalable order processing and smooth user experience.</p>
+                            <p style="font-size: 0.8rem; font-style: italic; color: #555;" data-i18n="geprek-note">Live Note: Deployed on a free-tier hosting service. The initial server response may experience slight delays.</p>
                             <a href="https://github.com/raditya-hafid/trymanpro" target="_blank" style="font-size: 0.9rem; color: #2563eb; text-decoration: none; font-weight: 500;">🔗 GitHub Repository</a>
                         </div>
                     </div>
@@ -93,18 +96,18 @@
                 <!-- Experience Box -->
                 <div class="box pengalaman">
                     <div class="content-full always-visible">
-                        <h2 style="font-size: 2.2rem;">Leadership Experience 🎯</h2>
+                        <h2 style="font-size: 2.2rem;" data-i18n="lead">Leadership Experience 🎯</h2>
                         <div class="truncate-text">
                             <ul style="margin-top: 1.2rem; padding-left: 1.2rem; line-height: 1.6;">
                                 <li style="margin-bottom: 1.2rem;">
-                                    <strong style="font-size: 1.1rem;">Head of Social Community Div.</strong><br>
+                                    <strong style="font-size: 1.1rem;" data-i18n="head-title">Head of Social Community Div.</strong><br>
                                     <span style="font-size: 0.95rem; font-weight: 500; color: #333;">HIMA E-Mailkomp UNS (Feb 2026 - Present)</span><br>
-                                    <span style="font-size: 0.95rem; color: #555;">Drive initiatives with big impact by leading social community outreach programs and coordinating cross-organizational collaborations. Responsible for planning and executing social campaigns that connect the academic community with the public.</span>
+                                    <span style="font-size: 0.95rem; color: #555;" data-i18n="head-desc">Drive initiatives with big impact by leading social community outreach programs and coordinating cross-organizational collaborations. Responsible for planning and executing social campaigns that connect the academic community with the public.</span>
                                 </li>
                                 <li>
-                                    <strong style="font-size: 1.1rem;">Committee Member & Participant</strong><br>
+                                    <strong style="font-size: 1.1rem;" data-i18n="com-title">Committee Member & Participant</strong><br>
                                     <span style="font-size: 0.95rem; font-weight: 500; color: #333;">SMART IT FESTIVAL 2025 (Surakarta City Hall)</span><br>
-                                    <span style="font-size: 0.95rem; color: #555;">Actively participated in organizing the regional IT festival, ensuring smooth operations and facilitating tech-talk sessions for hundreds of attendees.</span>
+                                    <span style="font-size: 0.95rem; color: #555;" data-i18n="com-desc">Actively participated in organizing the regional IT festival, ensuring smooth operations and facilitating tech-talk sessions for hundreds of attendees.</span>
                                 </li>
                             </ul>
                         </div>
@@ -115,7 +118,7 @@
                     <!-- Skill Box -->
                     <div class="box skill">
                         <div class="content-full always-visible">
-                            <h2 style="font-size: 2rem;">Skills 💻</h2>
+                            <h2 style="font-size: 2rem;" data-i18n="skills-title">Skills 💻</h2>
                             <div class="truncate-text">
                                 <ul style="margin-top: 0.8rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
                                     <li><strong>Backend:</strong> PHP (Laravel), SQL, API Design</li>
@@ -156,7 +159,7 @@
                     <!-- Education Box -->
                     <div class="box education">
                         <div class="content-full always-visible">
-                            <h2 style="font-size: 2rem;">Education 🎓</h2>
+                            <h2 style="font-size: 2rem;" data-i18n="edu-title">Education 🎓</h2>
                             <div class="truncate-text">
                                 <div style="margin-top: 0.8rem;">
                                     <p style="margin-bottom: 0.5rem;"><strong>Universitas Sebelas Maret (UNS)</strong><br>
@@ -172,7 +175,7 @@
                 <!-- Certification Box -->
                 <div class="box sertifikasi">
                     <div class="content-full always-visible">
-                        <h2 style="font-size: 2rem;">Certifications 📜</h2>
+                        <h2 style="font-size: 2rem;" data-i18n="cert-title">Certifications 📜</h2>
                         <div class="truncate-text">
                             <ul style="margin-top: 0.8rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
                                 <li><strong>Dicoding:</strong> Building Web Apps with React</li>
@@ -191,6 +194,11 @@
             <div class="nav-pill"></div>
         </div>
     </div>
+
+    <!-- Absolute Footer at the bottom of the page -->
+    <footer style="position: absolute; bottom: 1rem; width: 100%; text-align: center; color: #999; font-size: 0.75rem;">
+        &copy; 2026 Raditya Hafid Daniswara. All Rights Reserved.
+    </footer>
 
     <script src="script.js"></script>
 </body>

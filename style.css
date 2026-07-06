@@ -22,6 +22,38 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Theme */
+body.dark-mode {
+    --bg-color: #121212;
+    --box-bg: #1e1e1e;
+    --box-border: #333333;
+    --text-color: #e8eaed;
+}
+
+body.dark-mode .nav-btn, body.dark-mode .nav-pill {
+    background-color: #333333;
+    color: #e8eaed;
+}
+
+body.dark-mode .content-full p, body.dark-mode .snippet, body.dark-mode .truncate-text span, body.dark-mode .truncate-text p {
+    color: #a0a0a0 !important;
+}
+
+body.dark-mode .box.is-active {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .project {
+    background-color: #2d3748;
+}
+
+body.dark-mode .about-footer {
+    background-color: #064e3b !important;
+    border-color: #047857 !important;
+    color: #34d399 !important;
 }
 
 .layout-wrapper {
@@ -39,12 +71,39 @@ body {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
+    flex-wrap: wrap; /* agar tidak berantakan di layar kecil */
 }
 .nav-pill {
     width: 80px;
     height: 12px;
     background-color: #e8eaed;
     border-radius: 8px;
+}
+
+/* Nav Action Buttons */
+.nav-btn {
+    padding: 0.5rem 1rem;
+    background-color: #e8eaed;
+    border-radius: 99px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4b5563;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    font-family: 'Outfit', sans-serif;
+}
+.nav-btn:hover {
+    background-color: #d1d5db;
+    transform: translateY(-2px);
+}
+body.dark-mode .nav-btn:hover {
+    background-color: #4b5563;
 }
 
 /* Bento Container */
@@ -153,19 +212,29 @@ body {
     gap: 1rem;
     width: 100%;
     height: 100%;
-    padding: 1.5rem;
 }
 
 .inner-project {
     flex: 1;
-    background-color: var(--accent);
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.project-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2.5rem 1rem 1rem 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
     color: white;
-    border-radius: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-align: left;
 }
 
 /* Manajemen Konten di dalam Kotak */
@@ -270,7 +339,7 @@ body {
     flex: 3.5; /* Kolom kiri (project/about) membesar cukup lebar karena teks banyak */
 }
 .bento.has-active .col-right.has-active {
-    flex: 2.2; /* Kolom kanan jangan buka terlalu lebar agar tidak banyak space kosong horizontal */
+    flex: 1.5; /* Lebar dikurangi drastis lagi agar benar-benar nge-pas dengan teks konten */
 }
 
 .col.has-active > .row, 
@@ -279,14 +348,29 @@ body {
 }
 .col.has-active > .row.has-active, 
 .col.has-active > .box.is-active {
-    flex: 4; /* Baris/kotak yang aktif melebar */
+    flex: 2.2; /* Diturunkan dari 4 agar baris/kotak yang aktif tidak terlalu besar memanjang ke bawah */
 }
 
 .row.has-active > .box {
     flex: 1; /* Kotak di baris aktif mengecil jika tidak diklik */
 }
 .row.has-active > .box.is-active {
-    flex: 5; /* Kotak yang diklik mendominasi ruang di baris tersebut */
+    flex: 2.5; /* Dikurangi dari 5 menjadi 2.5 agar kotak tetangganya (seperti Education) tidak tergencet berlebihan */
+}
+
+/* Aturan khusus untuk kotak foto agar tidak terbuka terlalu besar */
+.row.has-active > .box.foto.is-active {
+    flex: 1.2; /* Melebar secukupnya saja untuk menampilkan Trivia Overlay */
+}
+
+/* Penyesuaian isi untuk kotak yang sedang tergencet (tidak aktif) */
+.row.has-active > .box:not(.is-active) .content-full {
+    padding: 1.5rem; /* Kurangi padding agar area konten sedikit lebih luas */
+}
+
+.row.has-active > .box:not(.is-active) .content-full h2 {
+    font-size: 1.6rem !important; /* Perkecil teks heading agar tidak terpotong */
+    word-break: break-word;
 }
 
 /* Menyamarkan teks pada kotak yang mengecil agar terlihat rapi */
@@ -329,19 +413,20 @@ body {
     bottom: 2rem;
     left: 2rem;
     transform: translateY(20px); /* Turun sedikit di awal */
-    background: rgba(15, 23, 42, 0.4); /* Lebih transparan */
-    backdrop-filter: blur(16px); /* Blur dinaikkan agar background foto tetap terlihat estetik */
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 2rem;
-    border-radius: 16px;
+    background: transparent; /* Hilangkan background agar tidak menutupi wajah */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    padding: 1rem;
+    border-radius: 0;
     color: white;
     width: calc(100% - 4rem);
     max-width: 400px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8)) drop-shadow(0 0 10px rgba(0,0,0,0.5)); /* Efek shadow teks agar tetap terbaca jelas meski tanpa background */
 }
 
 .box.is-active .foto-badge {
