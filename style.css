@@ -59,11 +59,11 @@ body.dark-mode .about-footer {
 .layout-wrapper {
     width: 100%;
     max-width: 96%; /* Diperlebar menjadi 96% dari layar untuk meminimalisir space kosong */
-    height: 85vh; /* Diturunkan dari 95vh agar grid keseluruhan tidak terlalu melar ke bawah */
+    height: 94vh; /* Ditingkatkan menjadi 94vh agar mengurangi jarak kosong atas dan bawah */
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    gap: 1.5rem;
+    gap: 1rem; /* Kurangi gap antara nav dan bento */
 }
 
 /* Nav Pills (Sesuai elemen abu-abu di atas & bawah wireframe) */
@@ -104,6 +104,20 @@ body.dark-mode .about-footer {
 }
 body.dark-mode .nav-btn:hover {
     background-color: #4b5563;
+}
+
+.social-btn {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.social-btn svg {
+    width: 22px;
+    height: 22px;
 }
 
 /* Bento Container */
@@ -302,7 +316,10 @@ body.dark-mode .nav-btn:hover {
 }
 
 .box.is-active .truncate-text {
-    -webkit-line-clamp: 20; /* Menghilangkan potongan teks ketika aktif */
+    -webkit-line-clamp: unset; /* Menghapus batas baris saat aktif */
+    display: block; /* Kembalikan ke block normal agar bisa scroll */
+    overflow: visible; /* Biarkan teks mengalir ke luar truncate-text */
+    height: auto;
 }
 
 .box.is-active .content-summary {
@@ -314,6 +331,25 @@ body.dark-mode .nav-btn:hover {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    overflow-y: auto; /* Mengizinkan scroll vertikal pada konten yang panjang */
+    /* Custom scrollbar untuk mempercantik */
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+/* Custom scrollbar untuk webkit (Chrome/Safari) */
+.box.is-active .content-full::-webkit-scrollbar {
+    width: 6px;
+}
+.box.is-active .content-full::-webkit-scrollbar-track {
+    background: transparent;
+}
+.box.is-active .content-full::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 10px;
+}
+body.dark-mode .box.is-active .content-full::-webkit-scrollbar-thumb {
+    background-color: #475569;
 }
 
 .content-full h2 {
